@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to right, #f0f4f9, #e2eafc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* --- UPDATED STYLES FOR CORRECT ALIGNMENT --- */
+.video-container {
+  /* 1. Set the container's reference point and control size */
+  position: relative;
+  
+  /* Removed display: inline-block; */
+  width: 100%;
+  max-width: 640px; /* Limit the max size of the video element */
+  margin: 0 auto; /* Center the container */
+  
+  /* Use a fixed aspect ratio to prevent layout shift and control height */
+  /* This is critical for responsive video elements without a fixed height */
+  aspect-ratio: 4 / 3; 
+  
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Grouping video and canvas styles to ensure perfect overlap */
+.video-container video,
+.video-container canvas.overlay {
+  /* 2. Position and size children to perfectly overlap */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;  /* Ensure they match the container size */
+  height: 100%; /* Ensure they match the container size */
+  
+  /* Override redundant border-radius/box-shadow from old rules */
+  border-radius: 0; 
+  box-shadow: none;
+}
+
+.video-container video {
+    z-index: 1;
+    /* Flips the video horizontally for a mirror effect, standard for webcams */
+    transform: scaleX(-1); 
+}
+
+.video-container canvas.overlay {
+  z-index: 2; /* Canvas must be on top of the video to draw the box */
+}
+/* --- END OF UPDATED STYLES --- */
+
+.expression {
+  color: #007bff;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
